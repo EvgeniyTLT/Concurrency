@@ -1,6 +1,6 @@
 public class Main {
 
-    private static final int SIZE = 10_000_000;
+    private static final int SIZE = 50_000_000;
     private static final int HALF = SIZE / 2;
 
 
