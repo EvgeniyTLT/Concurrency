@@ -1,37 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Start");
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+        List<Integer> list3 = new ArrayList<>();
 
-        Thread thread = new Thread(new Runnable() {
+        Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    for (int i = 0; i < 1000; i++) {
-                        if (Thread.currentThread().isInterrupted()) {
-                            break;
-                        }
-                        System.out.print(i);
-                        Thread.sleep(1000);
-
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                for (int i = 0; i < 1000000; i++) {
+                    list1.add(i);
                 }
             }
         });
 
-        thread.start();
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 1000000; i++) {
+                    list2.add(i);
+                }
+            }
+        });
+
+        Thread thread3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 1000000; i++) {
+                    list3.add(i);
+                }
+            }
+        });
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
         try {
-            Thread.sleep(1000);
+            thread1.join();
+            thread2.join();
+            thread3.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < 1000; i++) {
-            if (i == 100) {
-                thread.interrupt();
-            }
-            System.out.print("M");
-        }
-        System.out.println("\nFinish");
+        System.out.println(list1.size());
+        System.out.println(list2.size());
+        System.out.println(list3.size());
     }
 }
