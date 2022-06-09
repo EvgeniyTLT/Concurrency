@@ -1,21 +1,39 @@
 public class Counter {
 
-    private Object monitor = new Object();
     private int value;
+    private int value2;
+    private Object monitor1 = new Object();
+    private Object monitor2 = new Object();
 
     public void inc() {
-        synchronized (monitor) {
+        synchronized (monitor1) {
             value++;
         }
     }
 
     public void dec() {
-        synchronized (monitor) {
+        synchronized (monitor1) {
             value--;
         }
     }
 
     public int getValue() {
         return value;
+    }
+
+    public void inc2() {
+        synchronized (monitor2) {
+            value2++;
+        }
+    }
+
+    public void dec2() {
+        synchronized (monitor2) {
+            value2--;
+        }
+    }
+
+    public int getValue2() {
+        return value2;
     }
 }
