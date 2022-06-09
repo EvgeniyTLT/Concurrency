@@ -1,13 +1,18 @@
 public class Counter {
 
+    private Object monitor = new Object();
     private int value;
 
     public void inc() {
-        value++;
+        synchronized (monitor) {
+            value++;
+        }
     }
 
     public void dec() {
-        value--;
+        synchronized (monitor) {
+            value--;
+        }
     }
 
     public int getValue() {
