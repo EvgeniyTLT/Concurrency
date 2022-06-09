@@ -5,8 +5,27 @@ public class Main {
 
 
     public static void main(String[] args) {
+        startTimer();
         withConcerrency();
         withoutConcerrency();
+    }
+
+    private static void startTimer() {
+        Thread timer = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int seconds = 0;
+                try {
+                    while (true) {
+                        System.out.println(seconds++);
+                        Thread.sleep(1000);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        timer.start();
     }
 
     public static void withConcerrency() {
