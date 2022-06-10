@@ -7,7 +7,6 @@ public class Atm {
     }
 
     public synchronized void receivingMoneyFromAnAtm(People people) {
-
         try {
             System.out.println(people.getName() + " Подошел к банкомату");
             Thread.sleep(2000);
@@ -17,7 +16,6 @@ public class Atm {
                 cash = result;
             } else {
                 System.out.println("В банкомате не достаточно денег для " + people.getName());
-
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

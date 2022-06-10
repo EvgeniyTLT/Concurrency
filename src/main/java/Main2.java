@@ -10,7 +10,6 @@ public class Main2 {
                 while (atm.getCash() > 0) {
                     atm.receivingMoneyFromAnAtm(people1);
                 }
-
             }
         });
         Thread thread2 = new Thread(new Runnable() {
@@ -23,7 +22,5 @@ public class Main2 {
         });
         thread1.start();
         thread2.start();
-
-
     }
 }

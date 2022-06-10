@@ -51,6 +51,6 @@ public class Main {
         Long after = System.currentTimeMillis();
         System.out.println(counter.getValue());
         System.out.println(counter.getValue2());
-        System.out.println((float) (after-before)/1000+" заняло секунд");
+        System.out.println((float) (after - before) / 1000 + " заняло секунд");
     }
 }
