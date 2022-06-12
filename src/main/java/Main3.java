@@ -10,12 +10,12 @@ public class Main3 {
         Long after = System.currentTimeMillis();
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         CountDownLatch countDownLatch = new CountDownLatch(3);
-        executorService.execute(new Runnable() {
+        Runnable number1 = new Runnable() {
             @Override
             public void run() {
                 System.out.println("1 start");
-                int result = 0;
-                for (int i = 1; i <= 1_000_000; i++) {
+                long result = 0;
+                for (int i = 1; i <= 1_000_000000; i++) {
                     if (i % 2 == 0) {
                         result += i;
                     }
@@ -24,13 +24,14 @@ public class Main3 {
                 System.out.println("1 stop");
                 countDownLatch.countDown();
             }
-        });
-        executorService.execute(new Runnable() {
+        };
+
+        Runnable number2 = new Runnable() {
             @Override
             public void run() {
                 System.out.println("2 start");
-                int result = 0;
-                for (int i = 1; i <= 100000; i++) {
+                long result = 0;
+                for (int i = 1; i <= 1000000000; i++) {
                     if (i % 7 == 0) {
                         result += i;
                     }
@@ -39,8 +40,9 @@ public class Main3 {
                 System.out.println("2 stop");
                 countDownLatch.countDown();
             }
-        });
-        executorService.execute(new Runnable() {
+        };
+
+        Runnable number3= new Runnable() {
             @Override
             public void run() {
                 System.out.println("3 start");
@@ -58,7 +60,10 @@ public class Main3 {
                 System.out.println("3 stop");
                 countDownLatch.countDown();
             }
-        });
+        };
+        executorService.execute(number1);
+        executorService.execute(number2);
+        executorService.execute(number3);
         executorService.shutdown();
         try {
             countDownLatch.await();
