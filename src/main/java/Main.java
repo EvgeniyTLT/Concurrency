@@ -1,39 +1,36 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        Counter counter = new Counter();
-        long before = System.currentTimeMillis();
-        int barrier = 1000;
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < barrier; i++) {
-                    counter.inc();
+        List<Thread> threads = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            final int index = i;
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("Start - " + index);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Finish" + index);
                 }
-            }
-        });
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < barrier; i++) {
-                    counter.dec();
-                }
-            }
-        });
-
-        thread1.start();
-        thread2.start();
-
-        try {
-            thread1.join();
-            thread2.join();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            });
+            threads.add(thread);
+            thread.start();
         }
-        System.out.println(counter.getValue());
+        for (Thread thread: threads
+             ) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("all threads  are terminated");
     }
 }
