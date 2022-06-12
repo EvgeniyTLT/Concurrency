@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 
 public class Main {
 
     public static void main(String[] args) {
-        List<Thread> threads = new ArrayList<>();
+        CountDownLatch countDownLatch = new CountDownLatch(10);
         for (int i = 0; i < 10; i++) {
             final int index = i;
-            Thread thread = new Thread(new Runnable() {
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
                     System.out.println("Start - " + index);
@@ -19,17 +20,13 @@ public class Main {
                     }
                     System.out.println("Finish" + index);
                 }
-            });
-            threads.add(thread);
-            thread.start();
-        }
-        for (Thread thread: threads
-             ) {
+            }).start();
             try {
-                thread.join();
+                countDownLatch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            countDownLatch.countDown();
         }
         System.out.println("all threads  are terminated");
     }
