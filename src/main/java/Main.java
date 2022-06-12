@@ -26,7 +26,7 @@ public class Main {
                     countDownLatch.countDown();
                 }
             });
-         }
+        }
         executorService.shutdown();
         try {
             countDownLatch.await();
@@ -34,5 +34,9 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println("all threads  are terminated");
+        executorService.shutdown();
+
     }
+
+
 }
