@@ -3,13 +3,26 @@ import java.util.Queue;
 
 public class BlockingQueue {
 
-    public Queue<Runnable> queue = new LinkedList<>();
+    private final Queue<Runnable> queue = new LinkedList<>();
+    private Object monitor = new Object();
 
     public void add(Runnable task) {
-        queue.add(task);
+        synchronized (monitor) {
+            queue.add(task);
+            monitor.notify();
+        }
     }
 
     public Runnable take() {
-        return queue.poll();
+        synchronized (monitor) {
+            while (queue.isEmpty()) {
+                try {
+                    monitor.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return queue.poll();
+        }
     }
 }
