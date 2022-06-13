@@ -7,7 +7,9 @@ public class Main3 {
         ExecutorService executorService = Executors.newSingleThreadExecutor(new ThreadFactory() {
             @Override
             public Thread newThread(Runnable r) {
-                return null;
+                Thread thread = new Thread(r);
+                thread.setDaemon(true);
+                return thread;
             }
         });
         executorService.execute(new Runnable() {
