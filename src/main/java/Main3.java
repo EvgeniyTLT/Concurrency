@@ -15,27 +15,17 @@ public class Main3 {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                int seconds = 0;
                 try {
                     while (true) {
-                        System.out.println(seconds);
-                        Thread.sleep(1000);
-                        seconds++;
+                        System.out.println(".");
+                        Thread.sleep(300);
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
-        try {
-            for (int i = 0; i < 10; i++) {
-                System.out.println("...");
-                Thread.sleep(1000);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        System.out.println("Finish");
+
     }
 }
