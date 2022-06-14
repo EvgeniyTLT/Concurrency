@@ -12,7 +12,7 @@ public class MFP {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Отпечатано " + i + " страницa");
+                System.out.println("Отпечатано " + i + " страницa.");
 
             }
         }
@@ -27,7 +27,7 @@ public class MFP {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Отсканировано " + i + " страницa");
+                System.out.println("Отсканировано " + i + " страницa.");
             }
         }
     }
