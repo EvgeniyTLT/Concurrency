@@ -11,9 +11,7 @@ public class Main8 {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 try {
-
                     for (int i = 0; i < 100; i++) {
                         Thread.sleep(1);
                         numbers.add(i);
@@ -28,7 +26,6 @@ public class Main8 {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 try {
                     for (int i = 0; i < 100; i++) {
                         Thread.sleep(1);
