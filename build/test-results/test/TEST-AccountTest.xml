@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AccountTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-06-14T10:28:07" hostname="DESKTOP-0LTQCQR" time="8.029">
+  <properties/>
+  <testcase name="test" classname="AccountTest" time="8.029"/>
+  <system-out><![CDATA[Insufficient funds
+Insufficient funds
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
