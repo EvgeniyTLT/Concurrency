@@ -16,6 +16,12 @@ public class Main9 {
                     try {
                         Thread.sleep(millis);
                         System.out.println(name+ ": Data is ready");
+                        countDownLatch.countDown();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        countDownLatch.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
